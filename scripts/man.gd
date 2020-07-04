@@ -10,7 +10,7 @@ const LEFT = 1
 var side
 
 func to_left():
-	position = Vector2(-31.5, 785)
+	position = Vector2(-31.5, 781)
 	idle.flip_h = false
 	cut.flip_h = false
 	rip.position = Vector2(46, 98)
@@ -18,7 +18,7 @@ func to_left():
 	side = LEFT
 
 func to_right():
-	position = Vector2(369.5, 785)
+	position = Vector2(369.5, 781)
 	idle.flip_h = true
 	cut.flip_h = true
 	rip.position = Vector2(126, 98)
@@ -27,3 +27,9 @@ func to_right():
 
 func to_cut():
 	anim.play("cut")
+
+func die():
+	anim.stop()
+	cut.hide()
+	idle.hide()
+	rip.show()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/rip.png" type="Texture" id=1]
 [ext_resource path="res://assets/man_idle.png" type="Texture" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://assets/man_cut.png" type="Texture" id=5]
 [ext_resource path="res://scripts/man.gd" type="Script" id=6]
 [ext_resource path="res://scripts/game.gd" type="Script" id=7]
+[ext_resource path="res://assets/time_container.png" type="Texture" id=8]
+[ext_resource path="res://assets/time_bar.png" type="Texture" id=9]
+[ext_resource path="res://scripts/time.gd" type="Script" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "cut"
@@ -36,6 +39,15 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
+[sub_resource type="DynamicFontData" id=2]
+font_path = "res://assets/font.ttf"
+
+[sub_resource type="DynamicFont" id=3]
+size = 72
+extra_spacing_top = -30
+extra_spacing_bottom = -23
+font_data = SubResource( 2 )
+
 [node name="game" type="Node2D"]
 script = ExtResource( 7 )
 
@@ -45,12 +57,16 @@ scale = Vector2( 0.725, 0.725 )
 texture = ExtResource( 4 )
 
 [node name="stump" type="Sprite" parent="."]
-position = Vector2( 360, 1050 )
+position = Vector2( 363, 1050 )
 scale = Vector2( 0.725, 0.725 )
 texture = ExtResource( 3 )
 
+[node name="trunks" type="Node2D" parent="."]
+
+[node name="dest_trunks" type="Node2D" parent="."]
+
 [node name="man" type="Node2D" parent="."]
-position = Vector2( -31.5, 785 )
+position = Vector2( -31.5, 781 )
 script = ExtResource( 6 )
 
 [node name="man_idle" type="Sprite" parent="man"]
@@ -77,3 +93,34 @@ anims/cut = SubResource( 1 )
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
+
+[node name="restart" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="time" type="Node2D" parent="canvas"]
+position = Vector2( 360, 100 )
+scale = Vector2( 0.725, 0.725 )
+script = ExtResource( 10 )
+
+[node name="time_container" type="Sprite" parent="canvas/time"]
+texture = ExtResource( 8 )
+
+[node name="time_bar" type="Sprite" parent="canvas/time"]
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 508, 91 )
+
+[node name="score" type="Label" parent="canvas"]
+margin_top = 360.0
+margin_right = 720.0
+margin_bottom = 440.0
+custom_fonts/font = SubResource( 3 )
+text = "0"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="timeout" from="restart" to="." method="_on_restart_timeout"]
