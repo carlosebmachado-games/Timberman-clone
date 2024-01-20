@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/death.ogg-8149e2c2ca6cf71f9b03c6dce1f538d3.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bayfo5lr4lts7"
+path="res://.godot/imported/death.ogg-8149e2c2ca6cf71f9b03c6dce1f538d3.oggvorbisstr"
 
 [deps]
 
 source_file="res://assets/sound/death.ogg"
-dest_files=[ "res://.import/death.ogg-8149e2c2ca6cf71f9b03c6dce1f538d3.oggstr" ]
+dest_files=["res://.godot/imported/death.ogg-8149e2c2ca6cf71f9b03c6dce1f538d3.oggvorbisstr"]
 
 [params]
 
 loop=true
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

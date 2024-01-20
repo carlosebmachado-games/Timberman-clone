@@ -2,7 +2,7 @@ extends Node2D
 
 signal to_lose
 
-onready var time_bar = $time_bar
+@onready var time_bar = $time_bar
 
 var percent = 1.0
 

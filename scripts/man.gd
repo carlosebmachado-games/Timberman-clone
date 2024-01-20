@@ -1,9 +1,9 @@
 extends Node2D
 
-onready var anim = $animation
-onready var idle = $man_idle
-onready var cut = $man_cut
-onready var rip = $rip
+@onready var anim = $animation
+@onready var idle = $man_idle
+@onready var cut = $man_cut
+@onready var rip = $rip
 
 const RIGHT = 0
 const LEFT = 1

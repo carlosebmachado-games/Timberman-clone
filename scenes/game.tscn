@@ -1,98 +1,96 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=14 format=3 uid="uid://bwjlkv3gckvaa"]
 
-[ext_resource path="res://assets/rip.png" type="Texture" id=1]
-[ext_resource path="res://assets/man_idle.png" type="Texture" id=2]
-[ext_resource path="res://assets/stump.png" type="Texture" id=3]
-[ext_resource path="res://assets/background.png" type="Texture" id=4]
-[ext_resource path="res://assets/man_cut.png" type="Texture" id=5]
-[ext_resource path="res://scripts/man.gd" type="Script" id=6]
-[ext_resource path="res://scripts/game.gd" type="Script" id=7]
-[ext_resource path="res://assets/time_container.png" type="Texture" id=8]
-[ext_resource path="res://assets/time_bar.png" type="Texture" id=9]
-[ext_resource path="res://scripts/time.gd" type="Script" id=10]
+[ext_resource type="Texture2D" uid="uid://cdxltv2jgdqnn" path="res://assets/background.png" id="2_1vd82"]
+[ext_resource type="Texture2D" uid="uid://c35th612cvros" path="res://assets/stump.png" id="3_3i6om"]
+[ext_resource type="Texture2D" uid="uid://bw6kv8xt34pyn" path="res://assets/man_idle.png" id="3_kvhce"]
+[ext_resource type="Texture2D" uid="uid://dbwlkvviml4m" path="res://assets/man_cut.png" id="4_xdqvr"]
+[ext_resource type="Texture2D" uid="uid://bdyy0c1khs7pt" path="res://assets/rip.png" id="5_qnfsr"]
+[ext_resource type="Script" path="res://scripts/man.gd" id="6"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://btfnx3vrffcn4" path="res://assets/time_container.png" id="9_ue0bk"]
+[ext_resource type="Script" path="res://scripts/time.gd" id="10"]
+[ext_resource type="Texture2D" uid="uid://dx76t047ugodv" path="res://assets/time_bar.png" id="10_4qrqw"]
+[ext_resource type="FontFile" uid="uid://dj33yohoxulew" path="res://assets/font.ttf" id="11_hth47"]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id="1"]
 resource_name = "cut"
 length = 0.1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("man_idle:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ false, true ]
+"values": [false, true]
 }
 tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath("man_cut:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ true, false ]
+"values": [true, false]
 }
 
-[sub_resource type="DynamicFontData" id=2]
-font_path = "res://assets/font.ttf"
-
-[sub_resource type="DynamicFont" id=3]
-size = 72
-extra_spacing_top = -30
-extra_spacing_bottom = -23
-font_data = SubResource( 2 )
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2dtke"]
+_data = {
+"cut": SubResource("1")
+}
 
 [node name="game" type="Node2D"]
-script = ExtResource( 7 )
+script = ExtResource("7")
 
-[node name="background" type="Sprite" parent="."]
-position = Vector2( 360, 640 )
-scale = Vector2( 0.725, 0.725 )
-texture = ExtResource( 4 )
+[node name="background" type="Sprite2D" parent="."]
+position = Vector2(360, 640)
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("2_1vd82")
 
-[node name="stump" type="Sprite" parent="."]
-position = Vector2( 363, 1050 )
-scale = Vector2( 0.725, 0.725 )
-texture = ExtResource( 3 )
+[node name="stump" type="Sprite2D" parent="."]
+position = Vector2(363, 1050)
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("3_3i6om")
 
 [node name="trunks" type="Node2D" parent="."]
 
 [node name="dest_trunks" type="Node2D" parent="."]
 
 [node name="man" type="Node2D" parent="."]
-position = Vector2( -31.5, 781 )
-script = ExtResource( 6 )
+position = Vector2(-31.5, 781)
+script = ExtResource("6")
 
-[node name="man_idle" type="Sprite" parent="man"]
-scale = Vector2( 0.725, 0.725 )
-texture = ExtResource( 2 )
+[node name="man_idle" type="Sprite2D" parent="man"]
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("3_kvhce")
 centered = false
 
-[node name="man_cut" type="Sprite" parent="man"]
+[node name="man_cut" type="Sprite2D" parent="man"]
 visible = false
-scale = Vector2( 0.725, 0.725 )
-texture = ExtResource( 5 )
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("4_xdqvr")
 centered = false
 
-[node name="rip" type="Sprite" parent="man"]
+[node name="rip" type="Sprite2D" parent="man"]
 visible = false
-position = Vector2( 46, 98 )
-scale = Vector2( 0.725, 0.725 )
-texture = ExtResource( 1 )
+position = Vector2(46, 98)
+scale = Vector2(0.725, 0.725)
+texture = ExtResource("5_qnfsr")
 centered = false
 
 [node name="animation" type="AnimationPlayer" parent="man"]
-anims/cut = SubResource( 1 )
+libraries = {
+"": SubResource("AnimationLibrary_2dtke")
+}
 
 [node name="camera" type="Camera2D" parent="."]
 anchor_mode = 0
-current = true
 
 [node name="restart" type="Timer" parent="."]
 wait_time = 2.0
@@ -100,27 +98,28 @@ wait_time = 2.0
 [node name="canvas" type="CanvasLayer" parent="."]
 
 [node name="time" type="Node2D" parent="canvas"]
-position = Vector2( 360, 100 )
-scale = Vector2( 0.725, 0.725 )
-script = ExtResource( 10 )
+position = Vector2(360, 100)
+scale = Vector2(0.725, 0.725)
+script = ExtResource("10")
 
-[node name="time_container" type="Sprite" parent="canvas/time"]
-texture = ExtResource( 8 )
+[node name="time_container" type="Sprite2D" parent="canvas/time"]
+texture = ExtResource("9_ue0bk")
 
-[node name="time_bar" type="Sprite" parent="canvas/time"]
-texture = ExtResource( 9 )
+[node name="time_bar" type="Sprite2D" parent="canvas/time"]
+texture = ExtResource("10_4qrqw")
 region_enabled = true
-region_rect = Rect2( 0, 0, 508, 91 )
+region_rect = Rect2(0, 0, 508, 91)
 
 [node name="score" type="Label" parent="canvas"]
-margin_top = 360.0
-margin_right = 720.0
-margin_bottom = 440.0
-custom_fonts/font = SubResource( 3 )
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 783.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("11_hth47")
+theme_override_font_sizes/font_size = 90
 text = "0"
-align = 1
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="timeout" from="restart" to="." method="_on_restart_timeout"]
+[connection signal="to_lose" from="canvas/time" to="." method="lose"]

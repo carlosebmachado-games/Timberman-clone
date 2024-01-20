@@ -4,12 +4,12 @@ const TRUNK = 0
 const LBRANCH = 1
 const RBRANCH = 2
 
-onready var man = $man
-onready var camera = $camera
-onready var trunks = $trunks
-onready var dest_trunks = $dest_trunks
-onready var time_bar = $canvas/time
-onready var lbl_score = $canvas/score
+@onready var man = $man
+@onready var camera = $camera
+@onready var trunks = $trunks
+@onready var dest_trunks = $dest_trunks
+@onready var time_bar = $canvas/time
+@onready var lbl_score = $canvas/score
 
 var pre_trunk = preload("res://scenes/trunk.tscn")
 var pre_lbranch = preload("res://scenes/branch_left.tscn")
@@ -24,7 +24,7 @@ var status = PLAYING
 func _ready():
 	randomize()
 	initial_trunks()
-	time_bar.connect("to_lose", self, "lose")
+	# time_bar.connect("to_lose", self, "lose")
 
 func _input(event):
 	event = camera.make_input_local(event)
@@ -44,29 +44,29 @@ func _input(event):
 			drop()
 			time_bar.add_time(0.018)
 			score += 1
-			lbl_score.text = String(score)
+			lbl_score.text = str(score)
 			if branch_collision():
 				lose()
 		else:
 			lose()
 
 func rand_trunk(pos):
-	var t = rand_range(0, 3)
+	var t = randi_range(0, 3)
 	if was_branch: t = TRUNK
 	generate_trunk(int(t), pos)
 
 func generate_trunk(type, pos):
 	var new
 	if type == LBRANCH:
-		new = pre_lbranch.instance()
+		new = pre_lbranch.instantiate()
 		new.add_to_group("left")
 		was_branch = true
 	elif type == RBRANCH:
-		new = pre_rbranch.instance()
+		new = pre_rbranch.instantiate()
 		new.add_to_group("right")
 		was_branch = true
 	else:
-		new = pre_trunk.instance()
+		new = pre_trunk.instantiate()
 		was_branch = false
 	new.position = pos
 	trunks.add_child(new)
